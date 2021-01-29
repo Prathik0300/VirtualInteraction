@@ -26,8 +26,6 @@ Lower,Upper = caliberation()
 video = cv.VideoCapture(0)
 isTrue=1
 x0,y0=0,0
-point_color = (0,0,255)
-select_color = (0,255,0)
 cv.namedWindow('frame', cv.WINDOW_NORMAL)
 cv.setWindowProperty('frame', cv.WND_PROP_FULLSCREEN, cv.WINDOW_NORMAL)
 count=1
@@ -39,7 +37,7 @@ while isTrue==1:
     frame = cv.flip(frame,1)
     hsv = cv.cvtColor(frame,cv.COLOR_BGR2HSV)
     mask = cv.inRange(hsv,np.array(Lower),np.array(Upper))
-    erode = cv.erode(mask,(5,5),iterations=1)
+    erode = cv.erode(mask,(7,7),iterations=1)
     contour,hierarchy = cv.findContours(erode,cv.RETR_TREE,cv.CHAIN_APPROX_NONE)
     if contour:
         c = max(contour,key=cv.contourArea)
